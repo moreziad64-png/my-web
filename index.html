@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eng Mohamed Abdo | ENG Mohamed Abdo</title>
-    <!-- استدعاء خط Tajawal من جوجل -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <title>Eng Mohamed Abdo</title>
+    <!-- استدعاء أيقونات Font Awesome للشبكات الاجتماعية -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- خط تجوالي من Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
-        /* المتغيرات وإعدادات الألوان */
+        /* الألوان والمتغيرات الرئيسية */
         :root {
-            --primary-color: #0f172a;    /* أزرق داكن فخم */
-            --secondary-color: #2563eb;  /* أزرق حيوي */
-            --accent-color: #2c5f52;     /* لمسة ذهبية دافئة */
-            --bg-light: #0a2d50;         /* خلفية فاتحة مريحة */
-            --card-bg: #ffffff;          /* خلفية البطاقات */
-            --text-dark: #26344a;        /* لون النصوص الأساسية */
-            --text-muted: #64748b;       /* لون النصوص الفرعية */
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --primary: #6366f1;
+            --secondary: #ec4899;
+            --accent: #06b6d4;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --whatsapp-color: #25d366;
+            --facebook-color: #1877f2;
+            --instagram-color: #e4405f;
         }
 
         * {
@@ -27,105 +32,151 @@
         }
 
         body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* القائمة العلوية Header */
+        /* القائمة العلوية Navbar */
         header {
-            background-color: var(--primary-color);
-            padding: 1.2rem 2rem;
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            padding: 1.2rem 2rem;
         }
 
         .logo {
-            color: #ffffff;
-            font-size: 1.6rem;
-            font-weight: 800;
-            letter-spacing: 0.5px;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .logo span {
-            color: var(--accent-color);
-        }
-
-        nav ul {
+        .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
         }
 
-        nav a {
-            color: #e2e8f0;
+        .nav-links a {
+            color: var(--text-main);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 700;
             transition: color 0.3s ease;
         }
 
-        nav a:hover {
-            color: var(--accent-color);
+        .nav-links a:hover {
+            color: var(--accent);
         }
 
         /* القسم الرئيسي Hero Section */
         .hero {
-            padding: 5rem 2rem;
-            text-align: center;
-            background: linear-gradient(135deg, var(--primary-color) 0%, #1e293b 100%);
-            color: white;
-            border-bottom-left-radius: 40px;
-            border-bottom-right-radius: 40px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .hero h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
             margin-bottom: 1rem;
+            line-height: 1.2;
         }
 
-        .hero p {
+        .hero-text h1 span {
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text p {
+            color: var(--text-muted);
             font-size: 1.2rem;
-            color: #94a3b8;
-            max-width: 600px;
-            margin: 0 auto 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
         }
 
         .btn {
-            display: inline-block;
-            background-color: var(--secondary-color);
-            color: white;
             padding: 0.8rem 2rem;
-            border-radius: 30px;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .btn:hover {
-            background-color: #1d4ed8;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
         }
 
-        /* قسم الخدمات/المميزات Cards */
-        .container {
-            max-width: 1100px;
-            margin: 4rem auto;
-            padding: 0 1.5rem;
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+        }
+
+        /* صورة المبرمج المؤثرة */
+        .hero-image {
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 420px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* قسم الخدمات/المميزات */
+        .services {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 2.5rem;
-            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
             position: relative;
         }
 
@@ -134,76 +185,118 @@
             display: block;
             width: 60px;
             height: 4px;
-            background-color: var(--accent-color);
+            background: var(--accent);
             margin: 0.5rem auto 0;
             border-radius: 2px;
         }
 
-        .grid {
+        .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
         .card {
-            background-color: var(--card-bg);
+            background: var(--card-bg);
             padding: 2.5rem 1.5rem;
-            border-radius: 19px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, border-color 0.3s ease;
             text-align: center;
-            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #e2e8f0;
         }
 
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px);
+            border-color: var(--primary);
         }
 
-        .card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            display: inline-block;
+        .card i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
         }
 
         .card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-            color: var(--primary-color);
+            margin-bottom: 1rem;
         }
 
         .card p {
             color: var(--text-muted);
-            font-size: 0.95rem;
+        }
+
+        /* قسم التواصل الاجتماعي والواتساب */
+        .contact-section {
+            padding: 5rem 2rem;
+            background: #111827;
+            text-align: center;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px);
+        }
+
+        .social-btn.whatsapp {
+            background-color: var(--whatsapp-color);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .social-btn.facebook {
+            background-color: var(--facebook-color);
+            box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
+        }
+
+        .social-btn.instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            box-shadow: 0 4px 15px rgba(228, 64, 95, 0.3);
         }
 
         /* الفوتر Footer */
         footer {
-            background-color: var(--primary-color);
-            color: #94a3b8;
             text-align: center;
             padding: 2rem;
-            margin-top: 5rem;
-            font-size: 0.9rem;
-        }
-
-        footer p span {
-            color: var(--accent-color);
+            background: var(--bg-dark);
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         /* التجاوب مع الشاشات الصغيرة */
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 1rem;
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
 
-            .hero h1 {
-                font-size: 2rem;
+            .hero-text h1 {
+                font-size: 2.2rem;
             }
 
-            .hero p {
-                font-size: 1rem;
+            .btn-group {
+                justify-content: center;
+            }
+
+            .nav-links {
+                display: none;
             }
         }
     </style>
@@ -212,49 +305,83 @@
 
     <!-- القائمة العلوية -->
     <header>
-        <div class="logo"Eng Mohamed Abdoي <span>محمد عبده</span></div>
         <nav>
-            <ul>
+            <div class="logo">Eng 7amo</div>
+            <ul class="nav-links">
                 <li><a href="#home">الرئيسية</a></li>
                 <li><a href="#services">الخدمات</a></li>
-                <li><a href="#about">عن الموقع</a></li>
-                <li><a href="0114277424">تواصل معنا</a></li>
+                <li><a href="#contact">تواصل معنا</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- القسم الرئيسي -->
+    <!-- القسم الرئيسي (Hero Section) -->
     <section class="hero" id="home">
-        <h2>مرحباً بك في موقع Eng Mohamed Abdoه</h1>
-        <p>منصة واعدة تقدم أحدث الحلول الرقمية، البرمجية والتقنية برؤية احترافية وجودة عالية.</p>
-        <a href="#contact" class="btn">تواصل معنا الآن</a>
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1>سامو عليكوو، أنا <br><span>7amo</spaيل الأفكار إلى مواقع وتطبيقات تفاعلية احترافية بأحدث التقنيات وأفضل الألوان.</p>
+                <div class="btn-group">
+                    <a href="https://wa.me/201142777424" target="_blank" class="btn btn-primary">
+                        <i class="fab fa-whatsapp"></i> كلمني ب الحب
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <!-- صورة مبرمج عالية الجودة -->
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop" alt="مبرمج يعمل على الكود">
+            </div>
+        </div>
     </section>
 
     <!-- قسم الخدمات -->
-    <main class="container" id="services">
-        <h2 class="section-title">ماذا نقدم؟</h2>
-        <div class="grid">
+    <section class="services" id="services">
+        <h2 class="section-title"خدمات المهندس حمو؟ </h2>
+        <div class="cards-grid">
             <div class="card">
-                <div class="card-icon">💻</div>
-                <h3>تطوير البرمجيات</h3>
-                <p>بناء تطبيقات ومواقع ويب حديثة وتفاعلية تتناسب مع جميع الاحتياجات بأسلوب عصري.</p>
+                <i class="fas fa-code"></i>
+                <h3>تطوير المواقع</h3>
+                <p>دا ال عندي.</p>
             </div>
             <div class="card">
-                <div class="card-icon">⚡</div>
-                <h3>سرعة وأداء</h3>
-                <p>تصميمات مجهزة بأعلى معايير السرعة والأداء العالي لتوفير تجربة مستخدم سلسة.</p>
+                <i class="fas fa-paint-brush"></i>
+                <h3>تصميم واجهات المستخدم</h3>
+                <p>مش محتاج اتكلم عن نفسي</p>ة.</p>
             </div>
             <div class="card">
-                <div class="card-icon">🎯</div>
-                <h3>حلول ذكية</h3>
-                <p>توفير حلول تقنية مبتكرة تساعد في تحسين وتسهيل سير العمل وتنمية المشاريع.</p>
+                <i class="fas fa-rocket"></i>
+                <h3>سرعة وأداء عالٍ</h3>
+                <p>كتابة أكواد نظيفة وسريعة تضمن استجابة الموقع بأعلى كفاءة.</p>
             </div>
         </div>
-    </main>
+    </section>
+
+    <!-- قسم التواصل معنا -->
+    <section class="contact-section" id="contact">
+        <h2 class="section-title">تواصل معنا</h2>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">يمكنك التواصل معي مباشرة عبر المنصات التالية:</p>
+        
+        <div class="social-buttons">
+            <!-- رابط الواتساب مباشر للرقم -->
+            <a href="https://wa.me/201142777424" target="_blank" class="social-btn whatsapp">
+                <i class="fab fa-whatsapp"></i> واتساب: 01142777424
+            </a>
+
+            <!-- رابط فيسبوك باسم محمد عبده -->
+            <a href="https://www.facebook.com/search/top?q=%D9%85%D8%AD%D9%85%D8%AF%20%D8%B9%D8%A8%D8%AF%D9%87" target="_blank" class="social-btn facebook">
+                <i class="fab fa-facebook-f"></i> فيسبوك: محمد عبده
+            </a>
+
+            <!-- رابط انستغرام باسم محمد عبده -->
+            <a href="https://www.instagram.com/" target="_blank" class="social-btn instagram">
+                <i class="fab fa-instagram"></i> انستغرام: محمد عبده
+            </a>
+        </div>
+    </section>
 
     <!-- الفوتر -->
     <footer>
-        <p>جميع الحقوق محفوظة &copy; 2026 | <spaeng mohamed abdo</span></p>
+        <p>جميع الحقوق محفوظة &copy; 2026 -  تم التطوير بواسطة ** احلي مسا عليكو من المهندس محمد عبده**</p>
     </footer>
 
 </body>
+</html>
