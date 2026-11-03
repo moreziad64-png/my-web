@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جدول امتحانات هندسة ERU - Eng AmrAmin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #c9182b;
+            --primary-dark: #8c0c1b;
+            --bg-dark: #0f1115;
+            --card-bg: #181b20;
+            --border-color: #2a2e37;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --gold: #fbbf24;
+            --green: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 20px 10px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(201,24,43,0.15) 0%, rgba(15,17,21,0.9) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--gold), var(--primary));
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .subtitle {
+            color: var(--gold);
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .search-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            margin-bottom: 25px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .field {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px 16px;
+            background: #111317;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1.05rem;
+            font-weight: 700;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(201, 24, 43, 0.2);
+        }
+
+        .btn-search {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-search:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(201, 24, 43, 0.4);
+        }
+
+        .countdown-card {
+            display: none;
+            background: linear-gradient(135deg, #1c1917 0%, #0c0a09 100%);
+            border: 1px solid #44403c;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .countdown-title {
+            color: var(--gold);
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .timer-boxes {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .t-box {
+            background: #27272a;
+            border: 1px solid #3f3f46;
+            padding: 10px 15px;
+            border-radius: 10px;
+            min-width: 65px;
+        }
+
+        .t-val {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #fff;
+        }
+
+        .t-lbl {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .result-section {
+            display: none;
+        }
+
+        .student-badge {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .s-info h2 {
+            font-size: 1.4rem;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+
+        .s-id-pill {
+            background: rgba(201,24,43,0.2);
+            color: #f87171;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            border: 1px solid rgba(201,24,43,0.3);
+        }
+
+        .actions-btns {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-action {
+            padding: 10px 16px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: #22262e;
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .btn-action:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .exam-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+            margin-bottom: 25px;
+        }
+
+        .exam-table th {
+            background: transparent;
+            color: var(--text-muted);
+            padding: 10px 15px;
+            font-size: 0.85rem;
+            text-align: right;
+        }
+
+        .exam-row {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+        }
+
+        .exam-row td {
+            padding: 16px;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .exam-row td:first-child {
+            border-right: 4px solid var(--primary);
+            border-radius: 0 12px 12px 0;
+            border-right: 4px solid var(--primary);
+        }
+
+        .exam-row td:last-child {
+            border-radius: 12px 0 0 12px;
+        }
+
+        .course-code {
+            display: inline-block;
+            background: #252a34;
+            color: var(--gold);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            margin-bottom: 4px;
+        }
+
+        .course-name {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .building-tag {
+            color: #38bdf8;
+            font-weight: 700;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 30px;
+        }
+
+        .dev-tag {
+            color: var(--gold);
+            font-weight: 800;
+            margin-top: 5px;
+        }
+
+        @media print {
+            body { background: #fff; color: #000; }
+            .search-card, .actions-btns, footer, .countdown-card { display: none !important; }
+            .result-section { display: block !important; }
+            .exam-row { background: #fff !important; }
+            .exam-row td { border-color: #ddd !important; color: #000 !important; }
+            .course-name { color: #000 !important; }
+            .course-code { background: #eee !important; color: #000 !important; }
+            .student-badge { background: #fff !important; border-color: #000 !important; }
+            .s-info h2 { color: #000 !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="logo-area">
+            <i class="fa-solid fa-graduation-cap logo-icon"></i>
+            <div>
+                <h1>الجامعة المصرية الروسية - ERU</h1>
+                <div class="subtitle">كلية الهندسة - جدول امتحانات منتصف الفصل الدراسي خريف 2026</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="search-card">
+        <div class="input-group">
+            <div class="input-row">
+                <div class="field">
+                    <label><i class="fa-solid fa-id-card"></i> أدخل رقم القيد (ID):</label>
+                    <input type="number" id="studentId" placeholder="مثال: 261649" value="261649">
+                </div>
+                <div class="field">
+                    <label><i class="fa-solid fa-layer-group"></i> التخصص / المسار:</label>
+                    <select id="deptSelect">
+                        <option value="ALL">تلقائي (فحص كلي بحسب رقم الـ ID)</option>
+                        <option value="PREP">إعدادي هندسة / ذكاء اصطناعي</option>
+                        <option value="CIVIL">هندسة التشييد والبناء (مدني)</option>
+                        <option value="ARCH">الهندسة المعمارية</option>
+                        <option value="COMM">هندسة الاتصالات والحاسبات</option>
+                        <option value="MECH">الهندسة الميكانيكية والميكاترونكس</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn-search" onclick="searchExams()">
+                <i class="fa-solid fa-magnifying-glass"></i> استعلام جدولي الشخصي
+            </button>
+        </div>
+    </div>
+
+    <div class="countdown-card" id="countdownCard">
+        <div class="countdown-title"><i class="fa-solid fa-stopwatch"></i> الوقت المتبقي على بدء أول امتحاناتك</div>
+        <div class="timer-boxes">
+            <div class="t-box"><div class="t-val" id="tDays">0</div><div class="t-lbl">يوم</div></div>
+            <div class="t-box"><div class="t-val" id="tHours">0</div><div class="t-lbl">ساعة</div></div>
+            <div class="t-box"><div class="t-val" id="tMins">0</div><div class="t-lbl">دقيقة</div></div>
+        </div>
+    </div>
+
+    <div class="result-section" id="resultSection">
+        <div class="student-badge">
+            <div class="s-info">
+                <h2>جدول الامتحانات الشخصي</h2>
+                <div>رقم القيد: <span class="s-id-pill" id="dispId">261649</span></div>
+            </div>
+            <div class="actions-btns">
+                <button class="btn-action" onclick="window.print()"><i class="fa-solid fa-print"></i> طباعة / PDF</button>
+            </div>
+        </div>
+
+        <table class="exam-table">
+            <thead>
+                <tr>
+                    <th>المادة</th>
+                    <th>اليوم والتاريخ</th>
+                    <th>التوقيت</th>
+                    <th>المبنى والقاعة</th>
+                </tr>
+            </thead>
+            <tbody id="examTableBody">
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <div>الجامعة المصرية الروسية - كلية الهندسة ©️ 2026</div>
+        <div class="dev-tag"><i class="fa-solid fa-code"></i> تم إنشاؤه وتطويره من Eng AmrAmin</div>
+    </footer>
+</div>
+
+<script>
+const db = [
+    { code: "EEN101", title: "Electronic Engineering I", day: "السبت", date: "07/11/2026", time: "9:30 AM - 10:30 AM", bldg: "كلية الهندسة", hall: "H1", from: 221150, to: 251096, dept: "COMM" },
+    { code: "EEN101", title: "Electronic Engineering I", day: "السبت", date: "07/11/2026", time: "9:30 AM - 10:30 AM", bldg: "كلية الهندسة", hall: "H2", from: 251097, to: 251210, dept: "COMM" },
+    { code: "BSN106", title: "Computer Programming & AI", day: "السبت", date: "07/11/2026", time: "9:30 AM - 10:30 AM", bldg: "كلية الذكاء الاصطناعي", hall: "[001]", from: 231114, to: 241000, dept: "PREP" },
+    { code: "HMN002", title: "Introduction to Engineering", day: "السبت", date: "07/11/2026", time: "11:00 AM - 12:00 PM", bldg: "كلية الهندسة", hall: "H1", from: 191355, to: 261038, dept: "PREP" },
+    { code: "HMN002", title: "Introduction to Engineering", day: "السبت", date: "07/11/2026", time: "11:00 AM - 12:00 PM", bldg: "كلية الهندسة", hall: "S12", from: 261628, to: 261680, dept: "PREP" },
+    { code: "BSN008", title: "Probability & Statistics in Engineering", day: "السبت", date: "07/11/2026", time: "12:30 PM - 1:30 PM", bldg: "كلية الهندسة", hall: "H1", from: 191355, to: 241173, dept: "PREP" },
+    { code: "HMN001", title: "English Language", day: "السبت", date: "07/11/2026", time: "2:00 PM - 3:00 PM", bldg: "كلية الهندسة", hall: "S12", from: 261650, to: 261699, dept: "PREP" },
+    { code: "EEN102", title: "Basics of Electrical Circuit I", day: "الأحد", date: "08/11/2026", time: "9:30 AM - 10:30 AM", bldg: "كلية الهندسة", hall: "H1", from: 221103, to: 251079, dept: "COMM" },
+    { code: "BSN004", title: "Engineering Mechanics 1", day: "الأحد", date: "08/11/2026", time: "11:00 AM - 12:00 PM", bldg: "كلية الهندسة", hall: "S10", from: 261568, to: 261670, dept: "PREP" },
+    { code: "MEN301", title: "Automatic Control Systems", day: "الأحد", date: "08/11/2026", time: "12:30 PM - 1:30 PM", bldg: "كلية الهندسة", hall: "H1", from: 221033, to: 251608, dept: "MECH" },
+    { code: "BSN101", title: "Mathematics 3", day: "الإثنين", date: "09/11/2026", time: "9:30 AM - 10:30 AM", bldg: "كلية الهندسة", hall: "H2", from: 221012, to: 261765, dept: "PREP" },
+    { code: "BSN002", title: "Physics 1", day: "الإثنين", date: "09/11/2026", time: "11:00 AM - 12:00 PM", bldg: "كلية الهندسة", hall: "S12", from: 261618, to: 261671, dept: "PREP" },
+    { code: "BSN006", title: "Physics 2", day: "الإثنين", date: "09/11/2026", time: "12:30 PM - 1:30 PM", bldg: "كلية الهندسة", hall: "H4", from: 251214, to: 261747, dept: "PREP" },
+    { code: "ENG001", title: "Engineering Drawing 1", day: "الثلاثاء", date: "10/11/2026", time: "12:30 PM - 1:30 PM", bldg: "كلية الهندسة", hall: "S10", from: 261653, to: 261703, dept: "PREP" },
+    { code: "HMN005", title: "Technical Writing", day: "الثلاثاء", date: "10/11/2026", time: "11:00 AM - 12:00 PM", bldg: "كلية الهندسة", hall: "H3", from: 241239, to: 261759, dept: "PREP" },
+    { code: "BSN001", title: "Mathematics 1", day: "الأربعاء", date: "11/11/2026", time: "9:30 AM - 10:30 AM", bldg: "كلية الهندسة", hall: "S10", from: 261644, to: 261692, dept: "PREP" },
+    { code: "HMN004", title: "Human Rights & Anti-corruption", day: "الأربعاء", date: "11/11/2026", time: "12:30 PM - 1:30 PM", bldg: "كلية الهندسة", hall: "H4", from: 251364, to: 261750, dept: "PREP" },
+    { code: "BSN003", title: "Chemistry", day: "الخميس", date: "12/11/2026", time: "11:00 AM - 12:00 PM", bldg: "كلية الهندسة", hall: "S10", from: 261669, to: 261721, dept: "PREP" },
+    { code: "EEN103", title: "Logic Circuits", day: "الخميس", date: "12/11/2026", time: "12:30 PM - 1:30 PM", bldg: "كلية الهندسة", hall: "H3", from: 251359, to: 261747, dept: "COMM" }
+];
+
+function searchExams() {
+    const idVal = parseInt(document.getElementById('studentId').value);
+    const dept = document.getElementById('deptSelect').value;
+
+    if (!idVal) {
+        alert("يرجى كتابة رقم القيد أولاً!");
+        return;
+    }
+
+    const results = db.filter(item => {
+        const inRange = (idVal >= item.from && idVal <= item.to) || item.from === "ALL";
+        const inDept = (dept === "ALL") || (item.dept === dept);
+        return inRange && inDept;
+    });
+
+    displayResults(results, idVal);
+}
+
+function displayResults(items, id) {
+    const tableBody = document.getElementById('examTableBody');
+    const resultSec = document.getElementById('resultSection');
+    const countdownCard = document.getElementById('countdownCard');
+    document.getElementById('dispId').innerText = id;
+
+    tableBody.innerHTML = '';
+
+    if (items.length === 0) {
+        tableBody.innerHTML = `<tr><td colspan="4" style="text-align:center; padding:30px; color:var(--text-muted);">لم يتم العثور على امتحانات مسجلة لرقم القيد هذا.</td></tr>`;
+    } else {
+        items.forEach(item => {
+            tableBody.innerHTML += `
+                <tr class="exam-row">
+                    <td>
+                        <span class="course-code">${item.code}</span>
+                        <div class="course-name">${item.title}</div>
+                    </td>
+                    <td><strong>${item.day}</strong><br><small style="color:var(--text-muted);">${item.date}</small></td>
+                    <td><i class="fa-regular fa-clock" style="color:var(--gold);"></i> ${item.time}</td>
+                    <td><span class="building-tag">${item.bldg}</span><br><small>قاعة: ${item.hall}</small></td>
+                </tr>
+            `;
+        });
+        setupCountdown(items[0].date);
+        countdownCard.style.display = 'block';
+    }
+
+    resultSec.style.display = 'block';
+}
+
+function setupCountdown(examDateStr) {
+    const parts = examDateStr.split('/');
+    const targetDate = new Date(parts[2], parts[1] - 1, parts[0], 9, 30);
+    const now = new Date();
+    const diff = targetDate - now;
+
+    if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+        document.getElementById('tDays').innerText = days;
+        document.getElementById('tHours').innerText = hours;
+        document.getElementById('tMins').innerText = mins;
+    }
+}
+
+window.onload = function() {
+    searchExams();
+};
+</script>
+
+</body>
+</html>
